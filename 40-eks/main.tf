@@ -1,6 +1,6 @@
 resource "aws_key_pair" "eks" {
   key_name   = "expense-eks-key"
-  public_key = file("~/.ssh/expense-eks.pub")
+  public_key = file("E:\\devops\\repos\\expense-eks.pub")
 }
 
 module "eks" {
@@ -45,9 +45,9 @@ module "eks" {
       instance_types = ["t3.medium"]
       key_name = aws_key_pair.eks.key_name
 
-      min_size     = 1
+      min_size     = 2
       max_size     = 10
-      desired_size = 1
+      desired_size = 2
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
