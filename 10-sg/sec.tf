@@ -18,7 +18,7 @@ module "bastion_sg" {
   common_tags    = var.common_tags
 }
 
-
+#  ACCEPTING TRAFFIC FROM OFFICE N/W TO BASTION
 resource "aws_security_group_rule" "bastion_public" {
   type              = "ingress"
   from_port         = 22
@@ -28,6 +28,7 @@ resource "aws_security_group_rule" "bastion_public" {
   security_group_id = module.bastion_sg.sg_id
 }
 
+# ACCEPTING TRAFFOC FROM BASTION TO MYSQL
 resource "aws_security_group_rule" "mysql_bastion" {
   type                     = "ingress"
   from_port                = 3306
@@ -66,7 +67,7 @@ module "eks_node_sg" {
   vpc_id         = data.aws_ssm_parameter.vpc_id.value
   common_tags    = var.common_tags
 }
-# ACCEPTING TRAFFIC FROM NODE TO EKS CONTROL PLANE
+# ACCEPTING TRAFFIC FROM WORKER NODE TO EKS CONTROL PLANE(MASTER NODE)
 resource "aws_security_group_rule" "eks_control_plane_node" {
   type                     = "ingress"
   from_port                = 0
@@ -75,7 +76,7 @@ resource "aws_security_group_rule" "eks_control_plane_node" {
   source_security_group_id = module.eks_node_sg.sg_id
   security_group_id        = module.eks_control_plane_sg.sg_id
 }
-# ACCEPTING TRAFFIC FROM CONTROL PLANE TO NODE
+# ACCEPTING TRAFFIC FROM EKS CONTROL PLANE (MASTER NODE) TO WORKER NODE
 resource "aws_security_group_rule" "eks_node_eks_control_plane" {
   type                     = "ingress"
   from_port                = 0
@@ -84,7 +85,7 @@ resource "aws_security_group_rule" "eks_node_eks_control_plane" {
   source_security_group_id = module.eks_control_plane_sg.sg_id
   security_group_id        = module.eks_node_sg.sg_id
 }
-# ACCEPTING TRAFFIC FROM INGRESS TO NODE
+# ACCEPTING TRAFFIC FROM INGRESS TO WORKER NODE
 resource "aws_security_group_rule" "node_alb_ingress" {
   type                     = "ingress"
   from_port                = 30000
@@ -93,7 +94,7 @@ resource "aws_security_group_rule" "node_alb_ingress" {
   source_security_group_id = module.alb_ingress_sg.sg_id
   security_group_id        = module.eks_node_sg.sg_id
 }
-# ACCEPTING TRAFFIC FROM VPC TO NODE
+# ACCEPTING TRAFFIC FROM VPC TO WORKER NODE
 resource "aws_security_group_rule" "node_vpc" {
   type              = "ingress"
   from_port         = 0
@@ -103,7 +104,7 @@ resource "aws_security_group_rule" "node_vpc" {
   security_group_id = module.eks_node_sg.sg_id
 }
 
-# ACCEPTING TRAFFIC FROM BASTION TO NODE
+# ACCEPTING TRAFFIC FROM BASTION TO WORKER NODE
 resource "aws_security_group_rule" "node_bastion" {
   type                     = "ingress"
   from_port                = 22
