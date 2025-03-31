@@ -1,5 +1,5 @@
 resource "aws_key_pair" "eks" {
-  key_name   = "expense-eks-key"
+  key_name   = "eks-key"
   public_key = file("E:\\devops\\repos\\eks.pub")
 }
 
