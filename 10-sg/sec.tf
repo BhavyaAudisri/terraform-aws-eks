@@ -110,7 +110,7 @@ resource "aws_security_group_rule" "node_vpc" {
   type              = "ingress"
   from_port         = 0
   to_port           = 0
-  protocol          = "tcp"
+  protocol          = "-1"
   cidr_blocks       = ["10.0.0.0/16"] # our private IP address range
   security_group_id = module.eks_node_sg.sg_id
 }
