@@ -52,8 +52,9 @@ module "eks" {
         AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-        AmazonEC2FullAccess= "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-        ElasticLoadBalancingReadOnly  ="arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly"
+        AmazonEC2FullAccess = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+        ElasticLoadBalancingReadOnly = "arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly"
+        AWSShieldDRTAccessPolicy = "arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy"
       }
     }
   }
