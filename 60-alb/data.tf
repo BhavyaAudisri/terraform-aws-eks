@@ -10,6 +10,6 @@ data "aws_ssm_parameter" "public_subnet_ids" {
 data "aws_ssm_parameter" "alb_ingress_certificate_arn" {
   name = "/${var.project_name}/${var.environment}/alb_ingress_certificate_arn"
 }
-data "aws_ssm_parameter" "alb_ingress_listener_arn" {
-  name = "/${var.project_name}/${var.environment}/alb_ingress_listener_arn"
-}
+# data "aws_ssm_parameter" "alb_ingress_listener_arn" {
+#   name = "/${var.project_name}/${var.environment}/alb_ingress_listener_arn"
+# }
