@@ -51,19 +51,13 @@ module "eks" {
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-        #AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-        AmazonEC2FullAccess = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
-       # ElasticLoadBalancingReadOnly = "arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly"
-        AWSShieldDRTAccessPolicy = "arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy"
-        EC2DescribeSecurityGroups = "arn:aws:iam::124355635734:policy/EC2DescribeSecurityGroups"
-       # AWSLOADBALANCERCONTROLLER = "arn:aws:iam::124355635734:policy/AWSLOADBALANCERCONTROLLER"
-        DescribeLoadBalancers = "arn:aws:iam::124355635734:policy/DescribeLoadBalancers"
+        AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy"
       }
     }
   }
 
   tags = merge(
-    var.common_tags,
+    var.common_tags,d 
     {
         Name = local.name
     }
