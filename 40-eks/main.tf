@@ -56,6 +56,8 @@ module "eks" {
         ElasticLoadBalancingReadOnly = "arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly"
         AWSShieldDRTAccessPolicy = "arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy"
         EC2DescribeSecurityGroups = "arn:aws:iam::124355635734:policy/EC2DescribeSecurityGroups"
+       # AWSLOADBALANCERCONTROLLER = "arn:aws:iam::124355635734:policy/AWSLOADBALANCERCONTROLLER"
+        DescribeLoadBalancers = "arn:aws:iam::124355635734:policy/DescribeLoadBalancers"
       }
     }
   }
