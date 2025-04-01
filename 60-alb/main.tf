@@ -2,7 +2,7 @@ module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = false
   #expense-dev-web-alb
-  name                  = "${var.project_name}-${var.environment}-alb_ingress"
+  name                  = "${var.project_name}-${var.environment}-alb-ingress"
   vpc_id                = data.aws_ssm_parameter.vpc_id.value
   subnets               = local.public_subnet_ids
   create_security_group = false
@@ -10,7 +10,7 @@ module "alb" {
   tags = merge(
     var.common_tags,
     {
-      Name = "${var.project_name}-${var.environment}-alb_ingress"
+      Name = "${var.project_name}-${var.environment}-alb-ingress"
     }
   )
   enable_deletion_protection = false
