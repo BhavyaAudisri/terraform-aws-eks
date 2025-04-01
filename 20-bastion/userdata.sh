@@ -37,3 +37,9 @@ chmod 700 get_helm.sh
 
 # K9S install
 curl -sS https://webinstall.dev/k9s | bash
+
+# MYSQL INSTALLATION
+dnf install mysql -y
+
+# NSLOOKUP INSTALLATION
+dnf install bind-utils -y
