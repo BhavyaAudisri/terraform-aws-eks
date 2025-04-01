@@ -4,7 +4,7 @@ resource "aws_lb_listener_rule" "frontend" {
 
   action {
     type             = "forward"
-    target_group_arn = local.alb_tg_frontend_arn
+    target_group_arn = local.alb_tg_frontend_arn.arn
   }
 
   condition {
