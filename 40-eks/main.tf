@@ -57,7 +57,7 @@ module "eks" {
   }
 
   tags = merge(
-    var.common_tags,d 
+    var.common_tags
     {
         Name = local.name
     }
