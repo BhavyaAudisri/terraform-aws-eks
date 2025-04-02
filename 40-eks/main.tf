@@ -60,7 +60,7 @@ module "eks" {
       instance_types = ["t3.medium"]
       key_name = aws_key_pair.eks.key_name
       min_size      = 2
-      max_size      = 10
+      max_size      = 5
       desired_size  = 2
       #capacity_type = "SPOT"
       iam_role_additional_policies = {
