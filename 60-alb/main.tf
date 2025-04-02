@@ -2,11 +2,11 @@ module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = false
   #expense-dev-web-alb
-  name                  = "${var.project_name}-${var.environment}-alb-ingress"
-  vpc_id                = data.aws_ssm_parameter.vpc_id.value
-  subnets               = local.public_subnet_ids
-  create_security_group = false
-  security_groups       = [local.alb_ingress_sg_id]
+  name                       = "${var.project_name}-${var.environment}-alb-ingress"
+  vpc_id                     = data.aws_ssm_parameter.vpc_id.value
+  subnets                    = local.public_subnet_ids
+  create_security_group      = false
+  security_groups            = [local.alb_ingress_sg_id]
   enable_deletion_protection = false
   tags = merge(
     var.common_tags,
@@ -35,19 +35,19 @@ resource "aws_lb_listener" "https" {
 }
 
 resource "aws_route53_record" "alb_ingress" {
- zone_id = var.zone_id
- name = "expense-dev.${var.domain_name}"
- type = "A"
-#these are ALB DNS name and zone details
- alias {
-    name = module.alb.dns_name
-    zone_id = module.alb.zone_id
+  zone_id = var.zone_id
+  name    = "expense-dev.${var.domain_name}"
+  type    = "A"
+  #these are ALB DNS name and zone details
+  alias {
+    name                   = module.alb.dns_name
+    zone_id                = module.alb.zone_id
     evaluate_target_health = false
   }
 }
 
 resource "aws_lb_listener_rule" "frontend" {
-  listener_arn =  aws_lb_listener.https.arn
+  listener_arn = aws_lb_listener.https.arn
   priority     = 10
 
   action {
@@ -63,22 +63,22 @@ resource "aws_lb_listener_rule" "frontend" {
 }
 
 resource "aws_lb_target_group" "frontend" {
-  name     = local.resource_name
-  port     = 8080
-  protocol = "HTTP"
-  vpc_id   = local.vpc_id
+  name                 = local.resource_name
+  port                 = 8080
+  protocol             = "HTTP"
+  vpc_id               = local.vpc_id
   deregistration_delay = 60
-  target_type = "ip"
+  target_type          = "ip"
 
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 5
-    protocol = "HTTP"
-    port = 8080
-    path = "/"
-    matcher = "200-299"
-    interval = 10
+    timeout             = 5
+    protocol            = "HTTP"
+    port                = 8080
+    path                = "/"
+    matcher             = "200-299"
+    interval            = 10
   }
 }
 
