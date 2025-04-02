@@ -1,5 +1,5 @@
 resource "aws_lb_listener_rule" "frontend" {
-  listener_arn = data.aws_ssm_parameter.alb_ingress_certificate_arn.value
+  listener_arn = data.aws_ssm_parameter.alb_ingress_listener_arn.value
   priority     = 10
 
   action {

@@ -7,13 +7,13 @@ module "alb" {
   subnets               = local.public_subnet_ids
   create_security_group = false
   security_groups       = [local.alb_ingress_sg_id]
+  enable_deletion_protection = false
   tags = merge(
     var.common_tags,
     {
       Name = "${var.project_name}-${var.environment}-alb-ingress"
     }
   )
-  enable_deletion_protection = false
 }
 
 resource "aws_lb_listener" "https" {
@@ -43,7 +43,7 @@ resource "aws_route53_record" "alb_ingress" {
     name = module.alb.dns_name
     zone_id = module.alb.zone_id
     evaluate_target_health = false
-        }
+  }
 }
 
 resource "aws_lb_target_group" "frontend" {
