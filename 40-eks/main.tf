@@ -54,7 +54,7 @@ module "eks" {
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
       }
     }
-  }
+  
 
     green = {
       instance_types = ["t3.medium"]
@@ -71,6 +71,7 @@ module "eks" {
       # EKS takes AWS Linux 2 as it's OS to the nodes
      
     }
+  }
   
   tags = merge(
     var.common_tags,
