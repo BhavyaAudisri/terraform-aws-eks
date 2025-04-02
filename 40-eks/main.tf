@@ -56,6 +56,22 @@ module "eks" {
     }
   }
 
+    green = {
+      instance_types = ["t3.medium"]
+      key_name = aws_key_pair.eks.key_name
+      min_size      = 2
+      max_size      = 10
+      desired_size  = 2
+      #capacity_type = "SPOT"
+      iam_role_additional_policies = {
+        AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+        AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+        AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
+      }
+      # EKS takes AWS Linux 2 as it's OS to the nodes
+     
+    }
+  
   tags = merge(
     var.common_tags,
     {
