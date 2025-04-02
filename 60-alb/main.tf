@@ -46,6 +46,22 @@ resource "aws_route53_record" "alb_ingress" {
   }
 }
 
+resource "aws_lb_listener_rule" "frontend" {
+  listener_arn =  aws_lb_listener.https.arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.frontend.arn
+  }
+
+  condition {
+    host_header {
+      values = ["expense-${var.environment}.${var.domain_name}"]
+    }
+  }
+}
+
 resource "aws_lb_target_group" "frontend" {
   name     = local.resource_name
   port     = 8080
@@ -65,3 +81,4 @@ resource "aws_lb_target_group" "frontend" {
     interval = 10
   }
 }
+
