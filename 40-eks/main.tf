@@ -8,7 +8,7 @@ module "eks" {
   version = "~> 20.0"
 
   cluster_name    = local.name
-  cluster_version = "1.31" # later we upgrade 1.32
+  cluster_version = "1.32" # later we upgrade 1.32
   create_node_security_group = false
   create_cluster_security_group = false
   cluster_security_group_id = local.eks_control_plane_sg_id
@@ -39,7 +39,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    blue = {
+    /* blue = {
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       #ami_type       = "AL2_x86_64"
       instance_types = ["t3.medium"]
@@ -54,7 +54,7 @@ module "eks" {
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
         ec2securitygroup = "arn:aws:iam::124355635734:policy/ec2securitygroup"
       }
-    }
+    } */
   
 
     green = {
