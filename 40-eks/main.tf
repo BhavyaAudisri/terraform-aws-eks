@@ -74,6 +74,7 @@ module "eks" {
      
     }
   }
+  }
   
   tags = merge(
     var.common_tags,
