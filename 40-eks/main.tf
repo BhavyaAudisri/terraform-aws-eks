@@ -57,21 +57,22 @@ module "eks" {
     }
   
 
-   /*  green = {
+    green = {
+      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
+      #ami_type       = "AL2_x86_64"
       instance_types = ["t3.medium"]
       key_name = aws_key_pair.eks.key_name
-      min_size      = 2
-      max_size      = 3
-      desired_size  = 2
-      #capacity_type = "SPOT"
+
+      min_size     = 2
+      max_size     = 3
+      desired_size = 2
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-      }
-      # EKS takes AWS Linux 2 as it's OS to the nodes
+        ec2securitygroup = "arn:aws:iam::124355635734:policy/ec2securitygroup"
      
-    } */
+    }
   }
   
   tags = merge(
