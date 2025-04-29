@@ -72,6 +72,7 @@ module "eks" {
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
         ec2securitygroup = "arn:aws:iam::124355635734:policy/ec2securitygroup"     
         AmazonSSMReadOnlyAccess  = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+        ElasticLoadBalancingReadOnly = "arn:aws:iam::aws:policy/ElasticLoadBalancingReadOnly"
      
     }
   }
